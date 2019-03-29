@@ -110,9 +110,11 @@ except OSError:
     pass
 
 
-# Extra services are for those not advertised in policies.js, but are available to be called via AWS apis.
-# If/When these services are added to policies.js, these entries will be ignored.
-# IE, policies.js take priority over the entries here.
+# Extra services are for those not advertised in policies.js,
+# but are available to be called via AWS apis. If/When these
+# services are added to policies.js, the entry in extra_services
+# will be ignored. IE, policies.js takes priority over
+# extra_services entries.
 
 extra_services = {
     'SMM Messages': {
@@ -134,7 +136,7 @@ extra_services = {
             'DeleteSecret', 'DescribeSecret', 'GetRandomPassword',
             'GetResourcePolicy', 'GetSecretValue', 'ListSecrets',
             'ListSecretVersionIds', 'PutResourcePolicy',
-            'PutSecretValue', 'RestoreSecret', 'RotateSecre',
+            'PutSecretValue', 'RestoreSecret', 'RotateSecret',
             'TagResource', 'UntagResource', 'UpdateSecret',
             'UpdateSecretVersionStage'
         ],
@@ -154,6 +156,18 @@ extra_services = {
             'secretsmanager:VersionStage'
         ],
     },
+    'QuickSight': {
+        'StringPrefix': 'quicksight',
+        'Actions': [
+            'ListGroupMemberships', 'ListGroups', 'ListUserGroups',
+            'ListUsers', 'DescribeGroup', 'DescribeUser', 'CreateAdmin',
+            'CreateGroup', 'CreateGroupMembership', 'CreateReader',
+            'CreateUser', 'DeleteGroup', 'DeleteGroupMembership',
+            'DeleteUser', 'GetGroupMapping', 'RegisterUser',
+            'SearchDirectoryGroups', 'SetGroupMapping', 'Subscribe',
+            'Unsubscribe', 'UpdateGroup'
+        ]
+    }
 }
 
 
@@ -173,8 +187,18 @@ extra_actions = {
     'es': [
         'ESHttpDelete', 'ESHttpGet', 'ESHttpHead', 'ESHttpPost', 'ESHttpPut',
     ],
+    'firehose': [
+        'ListTagsForDeliveryStream', 'StartDeliveryStreamEncryption',
+        'StopDeliveryStreamEncryption', 'TagDeliveryStream',
+        'UntagDeliveryStream',
+    ],
     'iam': [
         'FinalizeSmsMfaRegistration', 'RequestSmsMfaRegistration',
+    ],
+    'kinesis': [
+        'DeregisterStreamConsumer', 'DescribeStreamConsumer',
+        'DescribeStreamSummary', 'ListShards', 'ListStreamConsumers',
+        'RegisterStreamConsumer', 'SubscribeToShard',
     ],
     's3': [
         'ObjectOwnerOverrideToBucketOwner', 'ReplicateTags',
